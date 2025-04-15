@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Our professional workflow process - AnikeVPF">
+  <title>Work Process | AnikeVPF</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Additional CSS for Workflow Page -->
+  <style>
+    .workflow-section {
+      padding: 6rem 2rem;
+      background: var(--body-bg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .workflow-section::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      right: -5%;
+      width: 40%;
+      height: 60%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: 0;
+    }
+    
+    .section-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .process-container {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin-bottom: 4rem;
+    }
+    
+    .process-container::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(99, 102, 241, 0.5), rgba(139, 92, 246, 0.5));
+      border-radius: 2px;
+      z-index: 0;
+    }
+    
+    @media (max-width: 992px) {
+      .process-container::before {
+        left: 30px;
+      }
+    }
+    
+    .process-step {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .process-step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .process-step:last-child {
+      margin-bottom: 0;
+    }
+    
+    .process-step:nth-child(odd) {
+      flex-direction: row;
+    }
+    
+    .process-step:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    
+    @media (max-width: 992px) {
+      .process-step:nth-child(even) {
+        flex-direction: row;
+      }
+    }
+    
+    .timeline-node {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 3px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      box-shadow: var(--shadow);
+      z-index: 1;
+      position: relative;
+      flex-shrink: 0;
+    }
+    
+    .timeline-node::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      z-index: -1;
+      opacity: 0.15;
+    }
+    
+    .step-content {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      max-width: 500px;
+      width: calc(50% - 60px);
+      margin: 0 30px;
+      border: 1px solid var(--border-color);
+    }
+    
+    @media (max-width: 992px) {
+      .step-content {
+        width: calc(100% - 80px);
+        margin: 0 0 0 20px;
+      }
+    }
+    
+    .step-content h3 {
+      font-size: 1.4rem;
+      margin: 0 0 1rem;
+      color: var(--primary);
+    }
+    
+    .step-content p {
+      margin: 0 0 1rem;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+    
+    .cta-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+    
+    .cta-button i {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">AnikeVPF</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="portfolio.html">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="workflow.html">Workflow</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Workflow Section -->
+  <section class="workflow-section" id="workflow">
+    <div class="section-inner">
+      <h2 class="section-title">Our Work Process</h2>
+      <p class="section-description text-center mb-5">
+        We follow a structured approach to ensure each project is completed efficiently and exceeds your expectations.
+      </p>
+      
+      <div class="process-container">
+        <div class="process-step">
+          <div class="timeline-node">1</div>
+          <div class="step-content">
+            <h3>Discovery Call</h3>
+            <p>We begin with an initial consultation to understand your project goals, requirements, and vision.</p>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="timeline-node">2</div>
+          <div class="step-content">
+            <h3>Proposal & Agreement</h3>
+            <p>After our consultation, we'll provide a detailed proposal outlining scope, timeline, and cost. Upon approval, we'll formalize our agreement.</p>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="timeline-node">3</div>
+          <div class="step-content">
+            <h3>Project Planning</h3>
+            <p>We'll create a comprehensive plan including storyboards, shot lists, and production schedules to ensure smooth execution.</p>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="timeline-node">4</div>
+          <div class="step-content">
+            <h3>Initial Payment</h3>
+            <p>A deposit payment secures your project slot in our schedule and allows us to begin the creative process.</p>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="timeline-node">5</div>
+          <div class="step-content">
+            <h3>Content Collection</h3>
+            <p>We'll gather all necessary materials, footage, assets, and information needed for your project.</p>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="timeline-node">6</div>
+          <div class="step-content">
+            <h3>Production Phase</h3>
+            <p>Our team works diligently to create your project within the established timeline, usually completed within 48-72 hours.</p>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="timeline-node">7</div>
+          <div class="step-content">
+            <h3>Review & Revision</h3>
+            <p>We'll share the first draft for your review. You'll have two rounds of revisions to ensure the final product meets your expectations.</p>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="timeline-node">8</div>
+          <div class="step-content">
+            <h3>Final Delivery</h3>
+            <p>After all revisions are complete, we'll deliver the final files in your preferred format and resolution.</p>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="timeline-node">9</div>
+          <div class="step-content">
+            <h3>Follow-up & Support</h3>
+            <p>We'll check in to ensure you're satisfied with the deliverables and provide any necessary support for implementation.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cta-container">
+        <a href="contact.html" class="cta-button">
+          <i class="far fa-calendar-alt"></i>
+          Ready to start your project? Contact us today!
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3 class="footer-title">AnikeVPF</h3>
+          <p class="footer-description">Professional visual production services tailored to your needs.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h3 class="footer-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h3 class="footer-title">Contact</h3>
+          <ul class="contact-info">
+            <li><i class="fas fa-envelope"></i> <a href="mailto:hello@videoeditor.com">hello@videoeditor.com</a></li>
+            <li><i class="fas fa-phone"></i> <a href="tel:+11234567890">+1 (123) 456-7890</a></li>
+            <li><i class="fas fa-map-marker-alt"></i> New Delhi, India</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 AnikeVPF. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  
+  <!-- Script for timeline animation on scroll -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const processSteps = document.querySelectorAll('.process-step');
+      
+      // Function to check if an element is in viewport
+      function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+          rect.bottom >= 0
+        );
+      }
+      
+      // Function to add visible class to steps in viewport
+      function handleScroll() {
+        processSteps.forEach((step) => {
+          if (isInViewport(step)) {
+            step.classList.add('visible');
+          }
+        });
+      }
+      
+      // Check on load
+      handleScroll();
+      
+      // Check on scroll
+      window.addEventListener('scroll', handleScroll);
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UNI - Professional visual production services including video editing, graphic design, and web development">
+  <meta name="keywords" content="video editing, graphic design, social media management, web development">
+  <meta name="author" content="UNI Creators">
+  <title>UNI | Professional Visual Production</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <style>
+    /* Custom styles for new design */
+    :root {
+      --orange-accent: #FF8A3C;
+      --orange-light: #FFA963;
+      --dark-bg: #121212;
+      --dark-card: #1E1E1E;
+      --overlay-bg: rgba(0, 0, 0, 0.75);
+    }
+    
+    body {
+      background-color: var(--body-bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .navbar {
+      background-color: rgba(30, 30, 40, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1.25rem 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--orange-accent) !important;
+      font-size: 2rem;
+    }
+    
+    .navbar-dark .navbar-nav .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      padding: 0 1.5rem;
+      transition: color 0.3s ease;
+    }
+    
+    .navbar-dark .navbar-nav .nav-link.active {
+      color: var(--orange-accent);
+    }
+    
+    .navbar-dark .navbar-nav .nav-link:hover {
+      color: var(--orange-accent);
+    }
+    
+    .nav-contact-btn {
+      background-color: var(--orange-accent);
+      color: #fff;
+      padding: 0.75rem 1.75rem;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      display: inline-block;
+      text-decoration: none;
+    }
+    
+    .nav-contact-btn:hover {
+      background-color: var(--orange-light);
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    .hero-section {
+      min-height: 100vh;
+      background-color: var(--dark-bg);
+      position: relative;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0.7;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.65);
+      z-index: 2;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      padding: 4rem;
+      background-color: var(--dark-card);
+      border-radius: 20px;
+      max-width: 750px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-title {
+      font-size: 3.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.75rem;
+      color: #fff;
+    }
+    
+    .hero-title .accent {
+      color: var(--orange-accent);
+    }
+    
+    .hero-subtitle {
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 90%;
+      line-height: 1.8;
+      color: #fff;
+    }
+    
+    .contact-btn {
+      background-color: var(--orange-accent);
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      display: inline-block;
+      text-decoration: none;
+    }
+    
+    .contact-btn:hover {
+      background-color: var(--orange-light);
+      transform: translateY(-3px);
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    .social-icons {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: fixed;
+      right: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    
+    .social-icon {
+      color: #fff;
+      font-size: 1.25rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background-color: rgba(30, 30, 30, 0.7);
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transform: scale(1);
+    }
+    
+    .social-icon:hover {
+      color: #fff;
+      background-color: var(--orange-accent);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .social-icon.linkedin:hover {
+      background-color: #0077B5;
+    }
+    
+    .social-icon.facebook:hover {
+      background-color: #1877F2;
+    }
+    
+    .social-icon.twitter:hover {
+      background-color: #1DA1F2;
+    }
+    
+    .social-icon.instagram:hover {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+    }
+    
+    /* Service cards and other sections styling */
+    .service-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+    
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    
+    .service-card p {
+      color: var(--text-light);
+    }
+    
+    .featured-portfolio {
+      background-color: var(--body-bg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .portfolio-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    
+    .portfolio-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .portfolio-info {
+      padding: 1.5rem;
+    }
+    
+    .portfolio-info h4 {
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    
+    .portfolio-info p {
+      color: var(--text-light);
+      margin-bottom: 0;
+    }
+    
+    .testimonials-section {
+      position: relative;
+      background-color: transparent;
+      color: white;
+      padding: 100px 0;
+      overflow: hidden;
+    }
+    
+    .testimonial-video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0.4;
+    }
+    
+    .testimonial-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 2;
+    }
+    
+    .testimonials-section .container-fluid {
+      position: relative;
+      z-index: 3;
+    }
+    
+    .testimonial-card {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .testimonials-section .section-title {
+      color: white;
+      margin-bottom: 3rem;
+    }
+    
+    .arrow-btn {
+      background-color: var(--orange-accent);
+      color: white;
+    }
+    
+    .arrow-btn:hover {
+      background-color: var(--orange-light);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+    
+    .btn-outline-primary {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    .btn-outline-primary:hover {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .hero-content {
+        margin: 0 20px;
+        max-width: 350px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-content {
+        padding: 2.5rem 1.5rem;
+        margin: 0 auto;
+      }
+    }
+    
+    /* Animation styles */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Testimonial slider styles */
+    .testimonial-card {
+      display: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-card.active {
+      display: block;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .testimonials-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    
+    .arrow-btn {
+      background-color: var(--orange-accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .arrow-btn:hover {
+      background-color: var(--orange-light);
+      transform: translateY(-3px);
+    }
+    
+    .slider-indicators {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0 1rem;
+    }
+    
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .indicator.active {
+      background-color: var(--orange-accent);
+      transform: scale(1.2);
+    }
+    
+    .client-info {
+      display: flex;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+    
+    .client-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 1rem;
+      border: 3px solid var(--orange-accent);
+    }
+    
+    .client-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .quote-icon {
+      color: var(--orange-accent);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Footer social icons styling */
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .footer-social .social-icon {
+      background-color: var(--orange-accent);
+    }
+    
+    /* Mobile responsiveness fixes */
+    @media (max-width: 576px) {
+      .hero-content {
+        padding: 2rem;
+        margin: 0 1rem;
+        max-width: 100%;
+      }
+      
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      
+      .intro-services h2 {
+        font-size: 3rem !important;
+      }
+      
+      .testimonial-card {
+        padding: 1.5rem;
+      }
+      
+      .client-image {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">UNI</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="portfolio.html">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="workflow.html">Workflow</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+        <a href="contact.html" class="nav-contact-btn">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <video class="video-background" autoplay loop muted playsinline>
+      <source src="assets/videos/background-video.mp4" type="video/mp4">
+      <!-- Fallback image if video doesn't load -->
+      <img src="assets/images/portfolio/portfolio-1.jpg" alt="Background">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          When you're done Googling 
+          <span class="accent">'how to
+          grow,'</span> call us.
+        </h1>
+        <p class="hero-subtitle">At UNI Creators, we fuse creativity with purpose to deliver impactful results that set you apart and drive growth.</p>
+        <a href="contact.html" class="contact-btn">Schedule a free call.</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Intro Services Section -->
+  <section class="intro-services py-5" style="background-color: #121212; color: white; padding: 80px 0;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2 style="font-size: 4.2rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem;">
+            Because <span style="color: var(--orange-accent);">Googling</span> it<br>
+            yourself isn't working<br>
+            out, is it?
+          </h2>
+        </div>
+        <div class="col-lg-6 position-relative">
+          <p style="font-size: 1.1rem; margin-bottom: 2rem;">Creative solutions that don't just look good on paper—unlike your last attempt.</p>
+          
+          <div class="service-list">
+            <div class="service-item d-flex align-items-center mb-4">
+              <div class="service-icon-small me-3" style="width: 40px; text-align: center; font-size: 1.5rem;">
+                <i class="fas fa-film"></i>
+              </div>
+              <p class="service-name mb-0" style="font-size: 1.1rem; font-weight: 500;">Video Editing</p>
+            </div>
+            <div class="service-item d-flex align-items-center mb-4">
+              <div class="service-icon-small me-3" style="width: 40px; text-align: center; font-size: 1.5rem;">
+                <i class="fas fa-palette"></i>
+              </div>
+              <p class="service-name mb-0" style="font-size: 1.1rem; font-weight: 500;">Graphic Design & Branding</p>
+            </div>
+            <div class="service-item d-flex align-items-center mb-4">
+              <div class="service-icon-small me-3" style="width: 40px; text-align: center; font-size: 1.5rem;">
+                <i class="fab fa-instagram"></i>
+              </div>
+              <p class="service-name mb-0" style="font-size: 1.1rem; font-weight: 500;">Social Media Management</p>
+            </div>
+            <div class="service-item d-flex align-items-center mb-4">
+              <div class="service-icon-small me-3" style="width: 40px; text-align: center; font-size: 1.5rem;">
+                <i class="fas fa-code"></i>
+              </div>
+              <p class="service-name mb-0" style="font-size: 1.1rem; font-weight: 500;">Basic Web Development</p>
+            </div>
+            <div class="mt-4">
+              <a href="services.html" class="btn rounded-pill" style="background-color: transparent; border: 1px solid white; color: white; padding: 0.6rem 2rem; font-weight: 500;">Know more</a>
+            </div>
+          </div>
+          
+          <!-- Replace the image with base64 encoded version -->
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiM1ZjRiMzI7fS5jbHMtMntmaWxsOiNmZmRlYmY7fS5jbHMtM3tmaWxsOiM0MjMxMWQ7fS5jbHMtNHtmaWxsOiMzYjNiM2I7fS5jbHMtNXtmaWxsOiM1MjUyNTI7fS5jbHMtNntmaWxsOiM2MjYyNjI7fS5jbHMtN3tmaWxsOiNmZmYyfS5jbHMtOHtmaWxsOiMzODI5MTY7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5CZWFyZGVkTWFuPC90aXRsZT48ZyBpZD0iTWFuIj48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjEwMCIgY3k9Ijc1IiByPSI2NSIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTEwMCwxMmMzNC43OSwwLDYzLDI4LjIxLDYzLDYzcTAsMS40MS0uMDksMi44YTEwOC40NSwxMDguNDUsMCwwLDEtNDcuMTYsOC4yQzg1LjIzLDg2LDY1LDc1LjY1LDM3LDc1LjY1YzAsMCwuMDktNDAuNjUsNjMtNjMuNjVaIi8+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMTAwLDUwaDQ2YTAsMCwwLDAsMSwwLDB2NmEyMywyMywwLDAsMS0yMywyM2gwYTIzLDIzLDAsMCwxLTIzLTIzVjUwYTAsMCwwLDAsMSwwLDBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNDYgNzkpIHJvdGF0ZSgxODApIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTQ2LDk1YzAsOC0yMC44MywxNC41LTQ2LjUsMTQuNVM1Myw5OSw1Myw5MXM5LjE3LTE0LDQ2LjUtMTRTMTQ2LDg3LDE0Niw5NVoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xNDYsOTBjMCw4LTIwLjgzLDE0LjUtNDYuNSwxNC41UzUzLDk0LDUzLDg2czIwLjgzLTE0LjUsNDYuNS0xNC41UzE0Niw3OCwxNDYsOTBaIi8+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMTQwLjI3LDc1QzEzOS4xMiw4Ny44Miw2MC40Miw4OC41Niw1OCw3NWgwUzc0LjU5LDEyMCwxMDAsMTIwLDEzOS4xMiw4OSwxNDAuMjcsNzVaIi8+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNjksMzkuNWExMC41LDEwLjUsMCwwLDAsMjEsMHYtMmE3LDcsMCwwLDAtMTQsMHYtMmMwLTQuMTQtMy41OC03LjUtOC03LjVzLTgsNC00LDguNVoiLz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0xMzEsMzkuNWExMC41LDEwLjUsMCwwLDEtMjEsMHYtMmE3LDcsMCwwLDEsMTQsMHYtMmMwLTQuMTQsMy41OC03LjUsOC03LjVzOCw0LDQsOC41WiIvPjxlbGxpcHNlIGNsYXNzPSJjbHMtNCIgY3g9IjgwIiBjeT0iNjAiIHJ4PSI2IiByeT0iNyIvPjxlbGxpcHNlIGNsYXNzPSJjbHMtNCIgY3g9IjEyMCIgY3k9IjYwIiByeD0iNiIgcnk9IjciLz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik02MywyMDBoMTRsMTYtNTAuNWE5LDksMCwwLDEsMTMuNS01LjVsNyw3LDctN2E5LDksMCwwLDEsMTMuNSw1LjVsMTYsNTAuNWgxNHMtMTUtMTEyLTY2LTExMmgtMmMtMzksMCw0Niw5NC02NiwxMTJaIi8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNMTAwLDEwOGgwYTI1LDI1LDAsMCwxLDI1LDI1VjIwMEg3NVYxMzNBMjUsMjUsMCwwLDEsMTAwLDEwOFoiLz48cGF0aCBjbGFzcz0iY2xzLTUiIGQ9Ik0xMjUsMTUwbC0yNS00Mi0yNSw0MmgwYTI1LDI1LDAsMCwwLDUwLDBaIi8+PGVsbGlwc2UgY2xhc3M9ImNscy02IiBjeD0iMTAwIiBjeT0iMTUwIiByeD0iMjUiIHJ5PSI1Ii8+PGNpcmNsZSBjbGFzcz0iY2xzLTciIGN4PSI3OCIgY3k9IjU2IiByPSIyIi8+PGNpcmNsZSBjbGFzcz0iY2xzLTciIGN4PSIxMjIiIGN5PSI1NiIgcj0iMiIvPjxwYXRoIGNsYXNzPSJjbHMtOCIgZD0iTTEwNiw2OGMyLDQtMiw3LTYsN3MtOC0zLTYtNyw0LTIsNi0yUzEwNCw2NCwxMDYsNjhaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTQ2LDcyYy0xLjY1LDguMzEtNy44MSwxNC41MS0xNS4zNSwxNC41MSw2Ljc1LTE1LjUxLTEzLjA4LTM0LTEzLjA4LTM0QzEzNC4xNyw1MiwxNDcuNjEsNjMuNjksMTQ2LDcyWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTU0LDcyYzEuNjUsOC4zMSw3LjgxLDE0LjUxLDE1LjM1LDE0LjUxLTYuNzUtMTUuNTEsMTMuMDgtMzQsMTMuMDgtMzRDNjUuODMsNTIsNTIuMzksNjMuNjksNTQsNzJaIi8+PC9nPjwvc3ZnPg==" alt="Character Avatar" style="max-width: 170px; position: absolute; right: 30px; top: -20px; z-index: 10;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section py-5" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="text-center mb-5">Professional visual production services tailored to your needs</p>
+      
+      <div class="row">
+        <!-- Video Editing -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="service-card animate-on-scroll">
+            <div class="service-icon">
+              <i class="fas fa-cut"></i>
+            </div>
+            <h3>Video Editing</h3>
+            <p>Professional editing services that transform raw footage into polished, compelling visual stories.</p>
+            <a href="portfolio.html#short-video" class="btn btn-outline-primary mt-3">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Script Writing -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="service-card animate-on-scroll">
+            <div class="service-icon">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+            <h3>Script Writing</h3>
+            <p>Creative and professional script writing for various video formats and purposes.</p>
+            <a href="portfolio.html#script" class="btn btn-outline-primary mt-3">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Graphic Design -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="service-card animate-on-scroll">
+            <div class="service-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3>Graphic Design</h3>
+            <p>Creative design solutions that communicate your message effectively and enhance your brand identity.</p>
+            <a href="portfolio.html#graphics" class="btn btn-outline-primary mt-3">Learn More</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <a href="portfolio.html" class="btn btn-primary btn-lg">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="featured-portfolio py-5" id="portfolio">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="text-center mb-5">Explore some of our recent work</p>
+      
+      <div class="row portfolio-grid">
+        <!-- Portfolio Item 1 - Video Editing -->
+        <div class="col-lg-4 col-md-6 mb-4 animate-on-scroll">
+          <div class="portfolio-card">
+            <div class="portfolio-thumb">
+              <img src="assets/images/portfolio/portfolio-1.jpg" alt="Commercial Video Editing">
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <a href="portfolio.html#short-video" class="overlay-icon"><i class="fas fa-link"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <h4>Commercial Video</h4>
+              <p>Video Editing</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 2 - Script Writing -->
+        <div class="col-lg-4 col-md-6 mb-4 animate-on-scroll">
+          <div class="portfolio-card">
+            <div class="portfolio-thumb">
+              <img src="assets/images/portfolio/portfolio-7.jpg" alt="Script Writing">
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <a href="portfolio.html#script" class="overlay-icon"><i class="fas fa-link"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <h4>Ad Video Script</h4>
+              <p>Script Writing</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 3 - Graphic Design -->
+        <div class="col-lg-4 col-md-6 mb-4 animate-on-scroll">
+          <div class="portfolio-card">
+            <div class="portfolio-thumb">
+              <img src="assets/images/portfolio/portfolio-6.jpg" alt="Graphic Design">
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <a href="portfolio.html#graphics" class="overlay-icon"><i class="fas fa-link"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <h4>Thumbnail Design</h4>
+              <p>Graphic Design</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <a href="portfolio.html" class="btn btn-primary btn-lg">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section py-5" id="testimonials">
+    <video class="testimonial-video-background" autoplay loop muted playsinline>
+      <source src="assets/videos/testimonial-video.mp4" type="video/mp4">
+      <!-- Fallback image if video doesn't load -->
+      <img src="assets/images/portfolio/portfolio-2.jpg" alt="Testimonial Background">
+    </video>
+    <div class="testimonial-overlay"></div>
+    <div class="container-fluid px-md-5 position-relative">
+      <h2 class="section-title text-white">What Our Clients Say</h2>
+      
+      <div class="testimonials-container">
+        <div class="testimonial-slider">
+          <div class="testimonial-card active">
+            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+            <p class="quote-content">The video editing was exceptional! They transformed my raw footage into a professional and engaging video that perfectly captured the essence of my event. Their attention to detail and creative input truly elevated the final product.</p>
+            <div class="client-info">
+              <div class="client-image">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAZABkAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+VcUUmRRketbHOLRSZFJkUASUVHkUZFAElFR5FGRQBJRUeRRkUASUVHkUuR60ALRSZHrS5HrQAlegeGvhRqXirQ7e8tJbGNLjJj85iFYA4JG0HvXBeIfFNh4VtorjUbuO1hlO1GcnBPoPWrvh/x/YeJLGaa1vIZI4WCy7ifkJGcHHvQBj6p4R1LRbSW4vLOWKGJQzMc9M4rnNw9RXX+KvHcHiuxuoJJ4HFwVLRu2fKCkEYH4Vx+4eo/KgBdw9RSbh6ikzRmgB9FFFADqKKKACg0UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/2Q==" alt="Client 1">
+              </div>
+              <h4 class="client-name">Rahul Sharma</h4>
+              <p class="client-position">Event Organizer, Delhi</p>
+            </div>
+          </div>
+          
+          <!-- Add more testimonial cards here -->
+          <div class="testimonial-card">
+            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+            <p class="quote-content">I needed a commercial video for my product launch, and they delivered beyond my expectations. The editing was smooth, the transitions were creative, and they added just the right music to create the perfect atmosphere.</p>
+            <div class="client-info">
+              <div class="client-image">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAZABkAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+VcUUmRRketbHOLRSZFJkUASUVHkUZFAElFR5FGRQBJRUeRRkUASUVHkUuR60ALRSZHrS5HrQAlegeGvhRqXirQ7e8tJbGNLjJj85iFYA4JG0HvXBeIfFNh4VtorjUbuO1hlO1GcnBPoPWrvh/x/YeJLGaa1vIZI4WCy7ifkJGcHHvQBj6p4R1LRbSW4vLOWKGJQzMc9M4rnNw9RXX+KvHcHiuxuoJJ4HFwVLRu2fKCkEYH4Vx+4eo/KgBdw9RSbh6ikzRmgB9FFFADqKKKACg0UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/2Q==" alt="Client 2">
+              </div>
+              <h4 class="client-name">Priya Patel</h4>
+              <p class="client-position">Entrepreneur, Mumbai</p>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+            <p class="quote-content">Working with this team has been an absolute pleasure. They took my YouTube content to the next level with their professional editing skills. My channel has seen a significant increase in engagement since I started using their services.</p>
+            <div class="client-info">
+              <div class="client-image">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAZABkAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+VcUUmRRketbHOLRSZFJkUASUVHkUZFAElFR5FGRQBJRUeRRkUASUVHkUuR60ALRSZHrS5HrQAlegeGvhRqXirQ7e8tJbGNLjJj85iFYA4JG0HvXBeIfFNh4VtorjUbuO1hlO1GcnBPoPWrvh/x/YeJLGaa1vIZI4WCy7ifkJGcHHvQBj6p4R1LRbSW4vLOWKGJQzMc9M4rnNw9RXX+KvHcHiuxuoJJ4HFwVLRu2fKCkEYH4Vx+4eo/KgBdw9RSbh6ikzRmgB9FFFADqKKKACg0UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/2Q==" alt="Client 3">
+              </div>
+              <h4 class="client-name">Vikram Singh</h4>
+              <p class="client-position">Content Creator, Bangalore</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="slider-controls">
+          <button class="arrow-btn prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="slider-indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+          </div>
+          <button class="arrow-btn next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section py-5 bg-light">
+    <div class="container text-center">
+      <div class="cta-container animate-on-scroll">
+        <h2 class="mb-4">Ready to Start Your Project?</h2>
+        <p class="mb-4">Let's collaborate to create stunning visual content that elevates your brand and engages your audience.</p>
+        <a href="contact.html" class="btn btn-primary btn-lg">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <h4>UNI</h4>
+          <p>Professional visual production services tailored to your needs.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h4>Contact Us</h4>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Main Street, City, Country</li>
+            <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> info@anikevpf.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <p class="copyright">© 2023 UNI Creators. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Testimonial Slider functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const testimonialCards = document.querySelectorAll('.testimonial-card');
+      const indicators = document.querySelectorAll('.indicator');
+      const prevBtn = document.querySelector('.prev-btn');
+      const nextBtn = document.querySelector('.next-btn');
+      let currentIndex = 0;
+
+      // Function to show a specific testimonial
+      function showTestimonial(index) {
+        testimonialCards.forEach(card => card.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        testimonialCards[index].classList.add('active');
+        indicators[index].classList.add('active');
+        currentIndex = index;
+      }
+
+      // Event listeners for indicators
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          showTestimonial(index);
+        });
+      });
+
+      // Event listener for previous button
+      prevBtn.addEventListener('click', () => {
+        let newIndex = currentIndex - 1;
+        if (newIndex < 0) newIndex = testimonialCards.length - 1;
+        showTestimonial(newIndex);
+      });
+
+      // Event listener for next button
+      nextBtn.addEventListener('click', () => {
+        let newIndex = currentIndex + 1;
+        if (newIndex >= testimonialCards.length) newIndex = 0;
+        showTestimonial(newIndex);
+      });
+
+      // Auto-rotate testimonials every 5 seconds
+      setInterval(() => {
+        let newIndex = currentIndex + 1;
+        if (newIndex >= testimonialCards.length) newIndex = 0;
+        showTestimonial(newIndex);
+      }, 5000);
+    });
+
+    // Simple animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('.animate-on-scroll');
+      
+      function checkScroll() {
+        animateElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          if (elementTop < windowHeight * 0.8) {
+            element.classList.add('visible');
+          }
+        });
+      }
+      
+      // Check on initial load
+      checkScroll();
+      
+      // Check on scroll
+      window.addEventListener('scroll', checkScroll);
+    });
+
+    // Important note about missing assets:
+    // The website requires the following media files for optimal performance:
+    // 1. assets/videos/background-video.mp4 - Hero section background video
+    // 2. assets/videos/testimonial-video.mp4 - Testimonials section background video
+    // 3. assets/images/portfolio/portfolio-1.jpg - Featured project image
+    // 4. assets/images/portfolio/portfolio-6.jpg - Featured project image 
+    // 5. assets/images/portfolio/portfolio-7.jpg - Featured project image
+    // 6. assets/images/favicon.svg - Website favicon
+    
+    // Note: We've added base64 encoded placeholders for client images, but
+    // you may want to replace them with actual photos for better quality
+  </script>
+</body>
+</html> 
